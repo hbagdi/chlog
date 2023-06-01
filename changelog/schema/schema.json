@@ -23,7 +23,8 @@
                     "core",
                     "plugins",
                     "admin-api",
-                    "pdk"
+                    "pdk",
+                    "misc"
                 ]
             },
             "upgrade-action": {
