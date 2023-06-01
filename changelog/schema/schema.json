@@ -1,0 +1,70 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "array",
+    "items": {
+        "type": "object",
+        "properties": {
+            "description": {
+                "type": "string",
+                "description": "Description of the change",
+                "minLength": 10,
+                "maxLength": 1024
+            },
+            "deprecation-action": {
+                "type": "string",
+                "description": "Describe specific action that a user must take in order to handle this deprecation",
+                "minLength": 10,
+                "maxLength": 1024
+            },
+            "sub-system": {
+                "type": "string",
+                "description": "Subsystem affected by the change",
+                "enum": [
+                    "core",
+                    "plugins",
+                    "admin-api",
+                    "pdk"
+                ]
+            },
+            "upgrade-action": {
+                "type": "string",
+                "description": "Description of the upgrade action",
+                "minLength": 10,
+                "maxLength": 1024
+            },
+            "change-type": {
+                "type": "string",
+                "description": "Type of change",
+                "enum": [
+                    "feature",
+                    "fix",
+                    "deprecation"
+                ]
+            },
+            "jira-links": {
+                "type": "array",
+                "description": "List of associated Jira links",
+                "items": {
+                    "type": "string",
+                    "pattern": "^[A-Z]+-[0-9]+$"
+                },
+                "minItems": 0
+            },
+            "github-issue-number": {
+                "type": "integer",
+                "description": "Associated GitHub issue number",
+                "minimum": 1
+            },
+            "github-pr-number": {
+                "type": "integer",
+                "description": "Associated GitHub pull request number",
+                "minimum": 1
+            }
+        },
+        "required": [
+            "description",
+            "sub-system",
+            "change-type"
+        ]
+    }
+}                                                                                                                                                                                    
