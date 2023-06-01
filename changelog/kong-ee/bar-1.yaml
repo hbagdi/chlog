@@ -1,0 +1,3 @@
+- description: "some new bar feature"
+  sub-system: Plugins
+  change-type: Feature

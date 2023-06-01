@@ -20,11 +20,11 @@
                 "type": "string",
                 "description": "Subsystem affected by the change",
                 "enum": [
-                    "core",
-                    "plugins",
-                    "admin-api",
-                    "pdk",
-                    "misc"
+                    "Core",
+                    "Plugins",
+                    "Admin-api",
+                    "PDK",
+                    "Misc"
                 ]
             },
             "upgrade-action": {
@@ -37,9 +37,10 @@
                 "type": "string",
                 "description": "Type of change",
                 "enum": [
-                    "feature",
-                    "fix",
-                    "deprecation"
+                    "Feature",
+                    "Fix",
+                    "Deprecation",
+                    "Breaking change"
                 ]
             },
             "jira-links": {
