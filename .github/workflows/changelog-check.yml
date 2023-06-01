@@ -11,5 +11,5 @@ jobs:
       with:
         jsonSchemaFile: changelog/schema/schema.json
         yamlFiles: |
-          changelog/kong/**
-          changelog/kong-ee/**
+          changelog/kong/*.yaml
+          changelog/kong-ee/*.yaml
