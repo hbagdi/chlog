@@ -61,10 +61,10 @@ def generate_markdown_output(result):
 
 yaml_dict = {}
 
-directory = "changelog/kong"
+directory = "changelog/unreleased/kong"
 process_yaml_directory(directory, yaml_dict)
 
-directory = "changelog/kong-ee"
+directory = "changelog/unreleased/kong-ee"
 process_yaml_directory(directory, yaml_dict)
 
 def write_output_to_file(output, filename):
