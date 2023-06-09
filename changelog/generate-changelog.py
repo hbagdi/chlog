@@ -44,9 +44,20 @@ def generate_markdown_output(result):
         output += f'## {change_type}\n\n'
         for subsystem, items in subsystems.items():
             output += f'### {subsystem}\n\n'
-            output += '- ' + '\n- '.join([item['description'] for item in items]) + '\n\n'
+            for item in items:
+                description = item['description']
+                jira_links = item.get('jira-links', [])
+
+                if jira_links:
+                    links = ' '.join([f'[{link}]({generate_jira_link(link)})' for link in jira_links])
+                    output += f'- {description} {links}\n'
+                else:
+                    output += f'- {description}\n'
+            output += '\n'
 
     return output
+
+
 
 yaml_dict = {}
 
@@ -59,5 +70,9 @@ process_yaml_directory(directory, yaml_dict)
 def write_output_to_file(output, filename):
     with open(filename, 'w') as file:
         file.write(output)
+
+def generate_jira_link(jira_ticket):
+    base_url = 'https://konghq.atlassian.net/browse/'
+    return base_url + jira_ticket
 
 print(generate_markdown_output(yaml_dict))

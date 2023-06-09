@@ -1,3 +1,6 @@
 - description: "some new bar feature"
   sub-system: Plugins
   change-type: Feature
+  jira-links:
+  - KAG-213
+  - KAG-212
