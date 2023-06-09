@@ -20,6 +20,14 @@ def parse_yaml_file(filepath, result):
             print(f"Error parsing YAML file: {filepath}")
             print(e)
 
+def generate_jira_link(jira_ticket):
+    base_url = 'https://konghq.atlassian.net/browse/'
+    return base_url + jira_ticket
+
+def generate_github_link(repo, issue):
+    base_url = 'https://github.com/'
+    return base_url + repo + '/issues/' + str(issue)
+
 def interpret_yaml_data(data, result):
     for item in data:
         change_type = item.get('change-type')
@@ -47,17 +55,23 @@ def generate_markdown_output(result):
             for item in items:
                 description = item['description']
                 jira_links = item.get('jira-links', [])
+                github_refs = item.get('github-refs', [])
 
                 if jira_links:
                     links = ' '.join([f'[{link}]({generate_jira_link(link)})' for link in jira_links])
-                    output += f'- {description} {links}\n'
-                else:
-                    output += f'- {description}\n'
+                    description += f' {links}'
+
+                if github_refs:
+                    for ref in github_refs:
+                        repo = ref['repo']
+                        issue = ref['issue']
+                        link = generate_github_link(repo, issue)
+                        description += f' [{repo}#{issue}]({link})'
+                output += f'- {description}\n'
+
             output += '\n'
 
     return output
-
-
 
 yaml_dict = {}
 
@@ -70,9 +84,5 @@ process_yaml_directory(directory, yaml_dict)
 def write_output_to_file(output, filename):
     with open(filename, 'w') as file:
         file.write(output)
-
-def generate_jira_link(jira_ticket):
-    base_url = 'https://konghq.atlassian.net/browse/'
-    return base_url + jira_ticket
 
 print(generate_markdown_output(yaml_dict))

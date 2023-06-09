@@ -1,3 +1,6 @@
 - description: "some new foo feature"
   sub-system: Core
   change-type: Feature
+  github-refs:
+  - repo: kong/kong
+    issue: 42

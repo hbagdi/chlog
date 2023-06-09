@@ -52,15 +52,23 @@
                 },
                 "minItems": 0
             },
-            "github-issue-number": {
-                "type": "integer",
-                "description": "Associated GitHub issue number",
-                "minimum": 1
-            },
-            "github-pr-number": {
-                "type": "integer",
-                "description": "Associated GitHub pull request number",
-                "minimum": 1
+            "github-refs": {
+                "type": "object",
+                "description": "Associated GitHub issue or PR numbers",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "repo": {
+                      "type": "string",
+                      "description": "Owner and name of the repo, example: 'torvalds/linux'"
+                    },
+                    "issue": {
+                      "type": "integer",
+                      "description": "issue or PR number, example 42"
+                    }
+                  },
+                  "required": ["repo", "issue"]
+                }
             }
         },
         "required": [
