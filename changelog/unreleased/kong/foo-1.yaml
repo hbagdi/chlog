@@ -1,6 +1,7 @@
 - description: "some new foo feature"
-  sub-system: Core
+  sub-system: Admin-api
   change-type: Feature
+  enterprise: True
   github-refs:
-  - repo: kong/kong
-    issue: 42
+  - repo: kong/kong-ee
+    issue: 44

@@ -10,6 +10,10 @@
                 "minLength": 10,
                 "maxLength": 1024
             },
+            "enterprise": {
+                "type": "boolean",
+                "description": "Is this change Enterprise only"
+            },
             "deprecation-action": {
                 "type": "string",
                 "description": "Describe specific action that a user must take in order to handle this deprecation",

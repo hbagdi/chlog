@@ -46,10 +46,10 @@ def interpret_yaml_data(data, result):
         result[change_type][subsystem].append(item)
 
 def generate_markdown_output(result):
-    output = ''
+    output = 'output.md\n\n'
 
     for change_type, subsystems in result.items():
-        output += f'## {change_type}\n\n'
+        output += f'\n## {change_type}\n\n' 
         for subsystem, items in subsystems.items():
             output += f'### {subsystem}\n\n'
             for item in items:
@@ -67,10 +67,12 @@ def generate_markdown_output(result):
                         issue = ref['issue']
                         link = generate_github_link(repo, issue)
                         description += f' [{repo}#{issue}]({link})'
+                
+                if item.get('enterprise', False):
+                    description += ' `Enterprise only`'
+
                 output += f'- {description}\n'
-
             output += '\n'
-
     return output
 
 yaml_dict = {}
